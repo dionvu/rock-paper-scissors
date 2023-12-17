@@ -9,17 +9,30 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-
+    if(playerSelection == computerSelection) return "It's a tie!";
+    
+    if(playerSelection == "rock" && computerSelection == "scissors") return "You win!"; 
+    else if(playerSelection == "paper" && computerSelection == "rock") return "You win!";
+    else if(playerSlection == "scissors" && computerSelection == "paper") return "You win!";
+    else return "Computer win!";
 }
 
 function game() {
-    let scorePlayer = 0;
-    let scoreComputer = 0;
+    let computerChoice;
+    let scoreComputer;
 
-    let computerChoice = "";
-    let playerChoice = "";
+    let playerChoice;
+    let scorePlayer;
+
+    let outcome;
 
     for(let i = 0; i < 5; i++) {
-        console.log(getComputerChoice());
+        computerChoice = getComputerChoice();
+        playerChoice = prompt(playerChoice);
+        
+        playerChoice = playerChoice.toLowerCase();
+
+        console.log(playRound(playerChoice, computerChoice));
     }
+
 }
