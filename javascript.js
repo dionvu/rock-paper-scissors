@@ -2,68 +2,97 @@ const ROCK = "rock";
 const PAPER = "paper";
 const SCISSORS = "scissors";
 
-game();
+// Scores
+let scorePlayerUi = document.getElementById("playerCounter");
+let scoreComputerUi = document.getElementById("computerCounter");
+let outcomeUi = document.querySelector(".foot");
+
+// Buttons
+let rockButton = document.getElementById("rock");
+let scissorsButton = document.getElementById("scissors");
+let paperButton = document.getElementById("paper");
+
+// Choices and scores
+let computerChoice = "";
+let playerChoice = "";
+
+let scorePlayer = 0;
+let scoreComputer = 0;
+
+let outcome;
+
+computerChoice = getComputerChoice();
+
+// Listners
+rockButton.addEventListener("click", () => {
+    playerChoice = ROCK;
+    playRound();
+});
+paperButton.addEventListener("click", () => {
+    playerChoice = PAPER;
+    playRound();
+});
+scissorsButton.addEventListener("click", () => {
+    playerChoice = SCISSORS;
+    playRound();
+});
+
+function playRound() {
+    outcome = getOutcome(playerChoice, computerChoice);
+    console.log(outcome);
+
+    if (outcome == "You win!") {
+        scorePlayer++;
+        updateScoreUi(scorePlayer, scoreComputer);
+    }
+    if (outcome == "Computer win!") {
+        scoreComputer++;
+        updateScoreUi(scorePlayer, scoreComputer);
+    }
+    checkWin();
+
+    computerChoice = getComputerChoice();
+}
+// functions
+
+function getOutcome() {
+    // Ties if computer choice and player choice equal each other
+    if (playerChoice == computerChoice) return "It's a tie!";
+
+    // Compares choice of player with computer 
+    if (
+        (playerChoice == ROCK && computerChoice == SCISSORS) ||
+        (playerChoice == PAPER && computerChoice == ROCK) ||
+        (playerChoice == SCISSORS && computerChoice == PAPER)
+    ) return "You win!";
+    else return "Computer win!";
+}
+
+function checkWin() {
+    let str;
+    if (scorePlayer >= 3) {
+        str = ("Player win! Player Score: "
+            + scorePlayer + " Computer Score: " + scoreComputer);
+    }
+
+    if (scoreComputer >= 3) {
+        str = ("Player win! Player Score: "
+            + scorePlayer + " Computer Score: " + scoreComputer);
+    }
+
+    outcomeUi.textContent = str;
+}
+
+function updateScoreUi() {
+    scorePlayerUi.textContent = scorePlayer;
+    scoreComputerUi.textContent = scoreComputer;
+}
 
 function getComputerChoice() {
     // choice is a number between 0 to 3
     let choice = Math.random() * 3;
 
-    if(choice <= 1) return ROCK;
-    if(choice <= 2) return PAPER;
+    if (choice <= 1) return ROCK;
+    if (choice <= 2) return PAPER;
     return SCISSORS;
-}
-
-function playRound(playerSelection, computerSelection) {
-    // Ties if computer choice and player choice equal each other
-    if(playerSelection == computerSelection) return "It's a tie!";
-    
-    // Compares choice of player with computer 
-    if(
-        (playerSelection == ROCK && computerSelection == SCISSORS) || 
-        (playerSelection == PAPER && computerSelection == ROCK) || 
-        (playerSelection == SCISSORS && computerSelection == PAPER) 
-    ) return "You win!";
-    else return "Computer win!";
-}
-
-function game() {
-    let computerChoice = "";
-    let playerChoice = "";
-
-    let scorePlayer = 0;
-    let scoreComputer = 0;
-    
-    // final total
-    let outcome;
-    
-    // Round
-    for(let i = 0; i < 5; i++) {
-        computerChoice = getComputerChoice();
-        playerChoice = prompt(playerChoice);
-        
-        playerChoice = playerChoice.toLowerCase();
-
-        outcome = playRound(playerChoice, computerChoice);
-        console.log(outcome);
-        
-        checkRound(outcome);
-    }
-    //Final score
-    checkTotal(scorePlayer, scoreComputer); 
-}
-
-// Returns 0 if tie, 1 if player win, 2 if computer win
-function checkRound(outcome) {
-    if(outcome == "You win!") return 0;
-    if(outcome == "Computer win!") return 1;
-    else return 2; 
-}
-
-function checkTotal(scorePlayer, scoreComputer) {
-    if(scorePlayer == scoreComputer) console.log("Game ends in a tie! Player Score: " 
-        + scorePlayer + " Computer Score: " + scoreComputer);
-    else if(scorePlayer > scoreComputer) console.log("Game ends in player win!. Player Score: " 
-        + scorePlayer + " Computer Score: " + scoreComputer);
-    else console.log("Game ends in player win!. Player Score: " 
-        + scorePlayer + " Computer Score: " + scoreComputer);
 }

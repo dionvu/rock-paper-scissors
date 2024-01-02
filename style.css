@@ -1,0 +1,47 @@
+.choices {
+    color: red;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+}
+.top {
+    padding: 100px;
+}
+
+.choices button {
+    font-size: 30px;
+    padding: 30px;
+    width: 250px;
+    height: 120px;
+    background: grey;
+    border-radius: 10px;
+    border: solid 3px;
+}
+
+.scores {
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    padding: 50px;
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.score span {
+    font-size: 35px;
+}
+
+.foot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 50px;
+    font-size: 50px;
+}
