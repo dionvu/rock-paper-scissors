@@ -1,4 +1,4 @@
-game();
+gameame();
 
 function getComputerChoice() {
     // choice is a number between 0 to 3
