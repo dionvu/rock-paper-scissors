@@ -1,4 +1,4 @@
-gameame();
+game();
 
 function getComputerChoice() {
     // choice is a number between 0 to 3
@@ -41,12 +41,15 @@ function game() {
 
         if(outcome == "You win!") scorePlayer++;
         if(outcome == "Computer win!") scoreComputer++;
-
     }
-    
-    // Compares score of player and computer and determines if the player or computer won overall (or if it was a tie)
-    if(scorePlayer == scoreComputer) console.log("Game ends in a tie! Player Score: " + scorePlayer + " Computer Score: " + scoreComputer);
-    else if(scorePlayer > scoreComputer) console.log("Game ends in player win!. Player Score: " + scorePlayer + " Computer Score: " + scoreComputer);
-    else console.log("Game ends in player win!. Player Score: " + scorePlayer + " Computer Score: " + scoreComputer);
+    checkOutcome(scorePlayer, scoreComputer); 
 }
 
+function checkOutcome(scorePlayer, scoreComputer) {
+    if(scorePlayer == scoreComputer) console.log("Game ends in a tie! Player Score: " 
+        + scorePlayer + " Computer Score: " + scoreComputer);
+    else if(scorePlayer > scoreComputer) console.log("Game ends in player win!. Player Score: " 
+        + scorePlayer + " Computer Score: " + scoreComputer);
+    else console.log("Game ends in player win!. Player Score: " 
+        + scorePlayer + " Computer Score: " + scoreComputer);
+}
