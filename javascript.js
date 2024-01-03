@@ -43,13 +43,15 @@ function playRound() {
 
     if (outcome == "You win!") {
         scorePlayer++;
-        updateScoreUi(scorePlayer, scoreComputer);
+        updateScoreUi();
+        checkWin();
     }
-    if (outcome == "Computer win!") {
+    else if (outcome == "Computer win!") {
         scoreComputer++;
-        updateScoreUi(scorePlayer, scoreComputer);
+        updateScoreUi();
+        checkWin();
     }
-    checkWin();
+    else updateScoreUi();
 
     computerChoice = getComputerChoice();
 }
@@ -71,13 +73,11 @@ function getOutcome() {
 function checkWin() {
     let str;
     if (scorePlayer >= 3) {
-        str = ("Player win! Player Score: "
-            + scorePlayer + " Computer Score: " + scoreComputer);
+        str = "Player win!";
     }
 
     if (scoreComputer >= 3) {
-        str = ("Player win! Player Score: "
-            + scorePlayer + " Computer Score: " + scoreComputer);
+        str = "Computer win!";
     }
 
     outcomeUi.textContent = str;
